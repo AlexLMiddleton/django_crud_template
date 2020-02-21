@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <h1 style="font-weight:500;line-height:1.2;margin-bottom:.5rem;">ModelTitle</h1>
+        </div>
+        <div>
+            <a href="{% url 'newmodel-create' %}">
+                <button type="button" class="btn ccsd-blue-btn col-md-2 col-md-offset-1"
+                    style="min-height:3em;margin-top:20px;">
+                    <i class="fas fa-plus"></i> Add New Item
+                </button>
+            </a>
+        </div>
+    </div>
+    <br />
+    {% for item in newmodel_list %}
+    <div class="row">
+        <div class="col-md-7 col-md-offset-1">
+            <div class="list-group">
+                <a href="{% url 'newmodel-detail' item.pk %}" class="list-group-item">
+                    {{ item.id }} | {{ item.template_name }} |
+                </a>
+            </div>
+        </div>
+
+        <a href="{% url 'newmodel-edit' item.pk %}">
+            <button type="button" class="btn ccsd-primary-btn col-md-1" style="margin-right:5px;min-height:3em;">
+                <i class="fas fa-edit"></i> Edit
+            </button>
+        </a>
+
+        <a href="{% url 'newmodel-delete' item.pk %}">
+            <button type="button" class="btn ccsd-orange-btn col-md-1" style="min-height:3em;">
+                <i class="fa fa-trash"></i> Delete
+            </button>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

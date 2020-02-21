@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div class="container-fluid">
+        <h5 style="text-align:center;font-weight:bold;">Edit position or applicant data below.</h5>
+        <div class="row" style="margin-top:25px">
+            <a href="{% url 'newmodel-list' %}">
+                <button type="button" class="btn ccsd-blue-btn col-md-1 col-md-offset-1" style="min-height:3em;">
+                    <i class='fa fa-home'></i> Home
+                </button>
+            </a>
+        </div>
+        <div class="row" style="margin-top:25px">
+            <div style="padding:0;" class="col-md-10 col-md-offset-1">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field }}
+                    {% endfor %}
+
+                    {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {% render_field field class="form-control" %}
+                        {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn ccsd-btn-primary col-md-1"
+                        style="margin:10px 0 25px 0;min-height:3em;">Submit</button>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}
