@@ -120,5 +120,6 @@ for x in range(models_number):
         with open(entry, 'w') as current:
             current.write(replace_text)
 
+os.system('python manage.py migrate')
 os.system('python manage.py makemigrations')
 os.system('python manage.py migrate')
