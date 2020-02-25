@@ -2,37 +2,43 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 col-md-offset-1">
-            <h1 style="font-weight:500;line-height:1.2;margin-bottom:.5rem;">ModelTitle</h1>
+        <div class="col-7">
+            <h1 style="font-weight:500;line-height:1.2;margin-bottom:.5rem;margin-top:10px;">ModelTitle</h1>
         </div>
-        <div>
-            <a href="{% url 'newmodel-create' %}">
-                <button type="button" class="btn ccsd-blue-btn col-md-2 col-md-offset-1"
-                    style="min-height:3em;margin-top:20px;">
-                    <i class="fas fa-plus"></i> Add New Item
-                </button>
-            </a>
+        <a href="{% url 'newmodel-create' %}">
+            <button type="button" class="btn ccsd-blue-btn"
+                style="min-height:3em;min-width:10em;margin-top:20px;margin-right:15px;">
+                <i class="fas fa-plus"></i> Add New Item
+            </button>
+        </a>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="newmodelMenuButton"
+                aria-expanded="false" style="min-height:3em;min-width:10em;margin-top:20px;"><i class=" fas
+                                fa-tools"></i> Menu</button>
+            <div class="dropdown-menu" aria-labelledby="newmodelMenuButton">
+                placeholderText
+            </div>
         </div>
     </div>
     <br />
     {% for item in newmodel_list %}
     <div class="row">
-        <div class="col-md-7 col-md-offset-1">
+        <div class="col-md-7">
             <div class="list-group">
                 <a href="{% url 'newmodel-detail' item.pk %}" class="list-group-item">
-                    {{ item.id }} | {{ item.template_name }} |
+                    {{ item.id }} | {{ item.template_field_name }} |
                 </a>
             </div>
         </div>
 
         <a href="{% url 'newmodel-edit' item.pk %}">
-            <button type="button" class="btn ccsd-primary-btn col-md-1" style="margin-right:5px;min-height:3em;">
+            <button type="button" class="btn ccsd-primary-btn" style="margin-right:15px;min-height:3em;min-width:10em;">
                 <i class="fas fa-edit"></i> Edit
             </button>
         </a>
 
         <a href="{% url 'newmodel-delete' item.pk %}">
-            <button type="button" class="btn ccsd-orange-btn col-md-1" style="min-height:3em;">
+            <button type="button" class="btn ccsd-orange-btn col-md-1" style="min-height:3em;min-width:10em;">
                 <i class="fa fa-trash"></i> Delete
             </button>
         </a>
